@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сюрприз | Happy birthday</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Marck+Script&family=Caveat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(
+          135deg,
+          #fff0f5 0%,
+          #ffe4ec 50%,
+          #ffd6e7 100%
+        );
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+        color: #333;
+        padding-bottom: 30px;
+      }
+
+      #bg-music {
+        display: none;
+      }
+
+      /* Стиль для заголовка страницы */
+      .surprise-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 3.5rem;
+        color: #e91e63;
+        text-align: center;
+        margin: 40px 0 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        animation: title-bounce 2s infinite alternate;
+      }
+
+      @keyframes title-bounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Видео блок */
+      .video-section {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 248, 250, 0.9) 100%
+        );
+        border-radius: 25px;
+        padding: 25px;
+        margin-bottom: 35px;
+        border: 5px double #ff4081;
+        box-shadow: 0 15px 35px rgba(255, 64, 129, 0.15);
+      }
+
+      .video-title {
+        font-family: "Marck Script", cursive;
+        font-size: 2.2rem;
+        color: #9c27b0;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .video-description {
+        font-family: "Caveat", cursive;
+        font-size: 1.5rem;
+        color: #673ab7;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        border-left: 4px solid #ff4081;
+      }
+
+      .surprise-video {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border: 5px solid #ff4081;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .surprise-video:hover {
+        transform: scale(1.02);
+        box-shadow: 0 20px 40px rgba(255, 64, 129, 0.2);
+      }
+
+      /* Галерея фотографий - ОПТИМИЗИРОВАННАЯ ВЕРСИЯ */
+      .gallery-section {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 248, 250, 0.9) 100%
+        );
+        border-radius: 25px;
+        padding: 25px;
+        margin-bottom: 35px;
+        border: 5px double #9c27b0;
+        box-shadow: 0 15px 35px rgba(156, 39, 176, 0.15);
+      }
+
+      .gallery-title {
+        font-family: "Marck Script", cursive;
+        font-size: 2.5rem;
+        color: #9c27b0;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .photo-item {
+        margin-bottom: 30px;
+        transition: transform 0.3s ease;
+      }
+
+      .photo-item:hover {
+        transform: translateY(-8px);
+      }
+
+      .photo-frame {
+        background: white;
+        border-radius: 20px;
+        padding: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border: 3px solid #ffccdc;
+        height: 100%;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .photo-item:hover .photo-frame {
+        box-shadow: 0 15px 35px rgba(255, 64, 129, 0.2);
+        border-color: #ff4081;
+      }
+
+      /* ИСПРАВЛЕННАЯ ОБЛАСТЬ ДЛЯ ФОТОГРАФИЙ - ЦЕНТРИРОВАНИЕ С ОБРЕЗКОЙ */
+      .photo-container {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+        position: relative;
+      }
+
+      .surprise-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ключевое свойство - заполняет контейнер с обрезкой */
+        object-position: center; /* Центрируем изображение */
+        border-radius: 12px;
+        border: 4px solid #ff4081;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      .surprise-photo2 {
+        width: 70%;
+        height: 100%;
+        object-fit: cover; /* Ключевое свойство - заполняет контейнер с обрезкой */
+        object-position: center; /* Центрируем изображение */
+        border-radius: 12px;
+        border: 4px solid #ff4081;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .photo-description {
+        font-family: "Caveat", cursive;
+        font-size: 1.4rem;
+        color: #673ab7;
+        text-align: center;
+        margin-top: 20px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        border-top: 3px solid #ffccdc;
+        width: 100%;
+      }
+
+      /* Навигация */
+      nav.navbar {
+        background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);
+        box-shadow: 0 4px 20px rgba(255, 64, 129, 0.3);
+        padding: 10px 0;
+      }
+
+      .navbar-brand {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.8rem;
+      }
+
+      .navbar-text {
+        font-family: "Marck Script", cursive;
+        font-size: 1.3rem;
+      }
+
+      /* Декоративные элементы - цветочки и сердечки */
+      .decorative-element {
+        position: absolute;
+        font-size: 2.5rem;
+        z-index: 0;
+        opacity: 0.6;
+      }
+
+      .decor-1 {
+        top: 10%;
+        left: 5%;
+        animation: float 8s infinite ease-in-out;
+        color: #ff4081;
+      }
+      .decor-2 {
+        top: 15%;
+        right: 8%;
+        animation: float 10s infinite ease-in-out 1s;
+        color: #9c27b0;
+      }
+      .decor-3 {
+        bottom: 20%;
+        left: 10%;
+        animation: float 9s infinite ease-in-out 2s;
+        color: #ff9800;
+      }
+      .decor-4 {
+        bottom: 15%;
+        right: 12%;
+        animation: float 7s infinite ease-in-out 3s;
+        color: #e91e63;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-30px) rotate(15deg);
+        }
+      }
+
+      /* Кнопка возврата */
+      .back-btn {
+        background: linear-gradient(45deg, #ff4081, #ff6b9d);
+        border: 3px solid white;
+        padding: 12px 40px;
+        font-size: 1.4rem;
+        font-family: "Dancing Script", cursive;
+        font-weight: bold;
+        border-radius: 50px;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(255, 64, 129, 0.3);
+        display: inline-block;
+        text-decoration: none;
+        margin: 30px auto;
+      }
+
+      .back-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 25px rgba(255, 64, 129, 0.4);
+        color: white;
+        background: linear-gradient(45deg, #ff6b9d, #ff4081);
+      }
+
+      /* Конфетти */
+      .confetti {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      .confetti:nth-child(1) {
+        background: #ff4081;
+        top: 10%;
+        left: 10%;
+        animation: confetti-fall 5s infinite;
+      }
+      .confetti:nth-child(2) {
+        background: #e91e63;
+        top: 20%;
+        left: 20%;
+        animation: confetti-fall 7s infinite;
+      }
+      .confetti:nth-child(3) {
+        background: #9c27b0;
+        top: 15%;
+        right: 15%;
+        animation: confetti-fall 6s infinite;
+      }
+      .confetti:nth-child(4) {
+        background: #ff9800;
+        bottom: 20%;
+        left: 30%;
+        animation: confetti-fall 8s infinite;
+      }
+      .confetti:nth-child(5) {
+        background: #ff5722;
+        bottom: 10%;
+        right: 20%;
+        animation: confetti-fall 9s infinite;
+      }
+
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(-100px) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Секция для дополнительных пожеланий */
+      .wishes-section {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 248, 250, 0.9) 100%
+        );
+        border-radius: 25px;
+        padding: 25px;
+        margin-bottom: 35px;
+        border: 5px double #ff9800;
+        box-shadow: 0 15px 35px rgba(255, 152, 0, 0.15);
+      }
+
+      .wishes-section-title {
+        font-family: "Marck Script", cursive;
+        font-size: 2.5rem;
+        color: #ff5722;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .final-wishes {
+        font-family: "Caveat", cursive;
+        font-size: 1.8rem;
+        color: #673ab7;
+        text-align: center;
+        line-height: 1.6;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 15px;
+        border: 3px dashed #ffccdc;
+      }
+
+      /* Адаптивность */
+      @media (max-width: 1200px) {
+        .photo-container {
+          height: 380px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .photo-container {
+          height: 350px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .surprise-title {
+          font-size: 2.5rem;
+          margin: 30px 0 20px;
+        }
+        .video-title,
+        .gallery-title,
+        .wishes-section-title {
+          font-size: 1.8rem;
+          margin-bottom: 20px;
+        }
+        .photo-container {
+          height: 320px;
+        }
+        .decorative-element {
+          font-size: 1.8rem;
+          opacity: 0.4;
+        }
+        .photo-description {
+          font-size: 1.3rem;
+          margin-top: 15px;
+        }
+        .video-section,
+        .gallery-section,
+        .wishes-section {
+          padding: 20px 15px;
+          margin-bottom: 25px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .surprise-title {
+          font-size: 2rem;
+        }
+        .photo-container {
+          height: 280px;
+        }
+        .photo-frame {
+          padding: 12px;
+        }
+        .back-btn {
+          padding: 10px 30px;
+          font-size: 1.2rem;
+        }
+        .final-wishes {
+          font-size: 1.5rem;
+          padding: 15px;
+        }
+        .video-description {
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .photo-container {
+          height: 250px;
+        }
+        .photo-description {
+          font-size: 1.2rem;
+          padding: 10px;
+        }
+        .surprise-title {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bg-music" src="1.mp3" loop></audio>
+
+    <!-- Декоративные элементы -->
+    <div class="decorative-element decor-1">🌸</div>
+    <div class="decorative-element decor-2">💖</div>
+    <div class="decorative-element decor-3">🎀</div>
+    <div class="decorative-element decor-4">✨</div>
+
+    <!-- Конфетти -->
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="proem.html">🎂 Меню</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="proem.html">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index2.html">Пожелания</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="part2.html"
+                >Сюрприз</a
+              >
+            </li>
+          </ul>
+          <span class="navbar-text">С Днем Рождения, Аня! 🎉</span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1 class="surprise-title">Сюрприз для тебя! 🎁</h1>
+
+      <!-- Видео секция -->
+      <div class="video-section">
+        <h2 class="video-title">Особенное видео</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-md-12">
+            <video
+              class="surprise-video"
+              src="video_2026-01-30_01-25-04.mp4"
+              controls
+              autoplay
+              muted
+              loop
+              alt="Сюрприз видео"
+            ></video>
+            <p class="video-description">
+              Блин, да это же был идеальный вечер))) Шёл снег, Андрей Губин
+              звучал из колонок, изумительная подсветка, а самое главное глаза,
+              просто изумительные, а самое главное, как мне кажется, очень
+              счастливые!🌟
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Галерея фотографий -->
+      <div class="gallery-section">
+        <h2 class="gallery-title">Что-то необычное</h2>
+        <div class="row">
+          <!-- Фото 1 -->
+          <div class="col-lg-6 col-md-6 col-sm-12 photo-item">
+            <div class="photo-frame">
+              <div class="photo-container">
+                <img
+                  src="2.jpg"
+                  class="surprise-photo"
+                  alt="Фото 1 - Особенный момент"
+                  onerror="
+                    this.src =
+                      'https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
+                  "
+                />
+              </div>
+              <p class="photo-description">
+                Не знаю, замечала ли ты, но на этом фото ты сама на себя не
+                похожа. Сначала я хотел сделать его основным — оно изначально
+                мне очень понравилось. Но в реальности ты совсем другая, и я
+                понял, что хочу показать здесь не просто красивый снимок, а то,
+                какой тебя вижу именно я ☀️
+              </p>
+            </div>
+          </div>
+
+          <!-- Фото 2 -->
+          <div class="col-lg-6 col-md-6 col-sm-12 photo-item">
+            <div class="photo-frame">
+              <div class="photo-container">
+                <img
+                  src="3.jpg"
+                  class="surprise-photo"
+                  alt="Фото 2 - Радостные мгновения"
+                  onerror="
+                    this.src =
+                      'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
+                  "
+                />
+              </div>
+              <p class="photo-description">
+                Снимок максимально забавный! Да, кривой, и да, возможно, он тебя
+                смущает, но в нём столько жизни. Зато теперь точно есть что
+                вспомнить с улыбкой!
+              </p>
+            </div>
+          </div>
+
+          <!-- Фото 3 -->
+          <div class="col-lg-6 col-md-6 col-sm-12 photo-item">
+            <div class="photo-frame">
+              <div class="photo-container">
+                <img
+                  src="4.jpg"
+                  class="surprise-photo2"
+                  alt="Фото 3 - Невероятные приключения"
+                  onerror="
+                    this.src =
+                      'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
+                  "
+                />
+              </div>
+              <p class="photo-description">
+                Как же тогда было холодно, но мы всё равно увидели акведук и
+                даже очаровательные арочки))) Определённо эти шарфики тебе очень
+                идут! ✨
+              </p>
+            </div>
+          </div>
+
+          <!-- Фото 4 -->
+          <div class="col-lg-6 col-md-6 col-sm-12 photo-item">
+            <div class="photo-frame">
+              <div class="photo-container">
+                <img
+                  src="5.jpg"
+                  class="surprise-photo"
+                  alt="Фото 4 - Волшебные воспоминания"
+                  onerror="
+                    this.src =
+                      'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
+                  "
+                />
+              </div>
+              <p class="photo-description">
+                Полгода жизни в этом коллаже. На фото — та самая первая прогулка
+                с марафона, когда Лобное место мне показалось большим колодцем,
+                и я чувствовал себя так неловко после шутки с обливанием пивом.
+                Кстати, только сейчас я вижу, как круто тогда совпали: твои
+                серые ноги один в один в цвет моей кофты. Total grey look,
+                кажется, они мне подходят больше 😂
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Дополнительные пожелания -->
+      <div class="wishes-section">
+        <h2 class="wishes-section-title">И еще немного пожеланий... 🌸</h2>
+        <div class="final-wishes">
+          С днем рождения! Пусть каждый твой день будет полон искреннего смеха и
+          радости. Желаю тебе осуществлять самые смелые мечты и находить счастье
+          в каждом мгновении! Оставайся такой же удивительной, доброй и
+          прекрасной, какая ты есть!🎂💖
+        </div>
+      </div>
+
+      <!-- Кнопка возврата -->
+      <div class="text-center">
+        <a href="proem.html" class="back-btn"> Вернуться на главную 🏠 </a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      window.onload = function () {
+        // Музыка
+        const audio = document.getElementById("bg-music");
+        const savedTime = localStorage.getItem("audioPosition");
+        if (savedTime) {
+          audio.currentTime = parseFloat(savedTime);
+        }
+        audio
+          .play()
+          .catch((e) =>
+            console.log(
+              "Автовоспроизведение заблокировано. Нажмите на страницу для запуска музыки",
+            ),
+          );
+
+        // Сохраняем позицию воспроизведения
+        setInterval(() => {
+          if (!audio.paused) {
+            localStorage.setItem("audioPosition", audio.currentTime);
+          }
+        }, 500);
+
+        // Анимация появления элементов
+        const sections = document.querySelectorAll(
+          ".video-section, .gallery-section, .wishes-section",
+        );
+
+        sections.forEach((section, index) => {
+          section.style.opacity = "0";
+          section.style.transform = "translateY(30px)";
+
+          setTimeout(
+            () => {
+              section.style.transition = "opacity 1s ease, transform 1s ease";
+              section.style.opacity = "1";
+              section.style.transform = "translateY(0)";
+            },
+            300 + index * 200,
+          );
+        });
+
+        // Установка центрирования и обрезки для фотографий
+        const photos = document.querySelectorAll(".surprise-photo");
+        photos.forEach((photo) => {
+          // Убедимся, что свойства установлены
+          photo.style.objectFit = "cover";
+          photo.style.objectPosition = "center";
+
+          // Плавное появление
+          photo.style.opacity = "0";
+          photo.style.transition = "opacity 0.8s ease";
+
+          setTimeout(() => {
+            photo.style.opacity = "1";
+          }, 300);
+        });
+      };
+
+      // Добавляем обработчик ошибок загрузки изображений
+      document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll(".surprise-photo");
+        images.forEach((img) => {
+          img.addEventListener("error", function () {
+            console.log("Ошибка загрузки изображения: " + this.src);
+            const container = this.closest(".photo-container");
+            if (container) {
+              container.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #9c27b0; font-family: 'Caveat', cursive; font-size: 1.5rem;">
+                <div>Фото скоро появится... 💖</div>
+              </div>`;
+            }
+          });
+        });
+      });
+
+      // Добавляем плавное масштабирование при наведении
+      document.addEventListener("DOMContentLoaded", function () {
+        const photos = document.querySelectorAll(".surprise-photo");
+        photos.forEach((photo) => {
+          photo.addEventListener("mouseenter", function () {
+            this.style.transform = "scale(1.05)";
+            this.style.transition = "transform 0.3s ease";
+          });
+
+          photo.addEventListener("mouseleave", function () {
+            this.style.transform = "scale(1)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
